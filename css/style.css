@@ -113,9 +113,6 @@ input[name="search"]{
 }
 
 /* 공통 네비게이션 */
-.navigation{
-  background: aqua;
-}
 
 /* 공통 메인 */
 .main{
@@ -357,7 +354,6 @@ input[name="search"]{
     background-color: #958576;
   }
   .navigation {
-    height: 10vh;
   }
 
   /* 데스크탑 메인 콘텐츠 */
