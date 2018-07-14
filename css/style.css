@@ -52,12 +52,35 @@ table {
 	border-spacing: 0;
 }
 
+/* 숨김 콘텐츠 */
+legend, .a11y{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  clip: rect(0,0,0,0)
+}
+
+/* clearfix - float 이슈를 해결하기위한 클래스 모듈 */
+.clearfix::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
 /* 하이퍼링크 스타일 */
 a{
   color: inherit;
   text-decoration: none;
 }
+
+/* 본문 스타일 */  
+html{
+  font-size: 10px;
+}
 body{
+  font-size: 1.6rem;
   color: #181818;
   font-family: 'Noto Sans Regular', sans-serif;
 }
@@ -82,16 +105,11 @@ body{
   width: 100%;
 }
 
-/* 공통 헤더 */
-.header{
-  background: lime;
-}
-
-/* 공통 안내링크 */
-.member{
-  background: yellow;
-  display: flex;
-  justify-content: flex-end;
+/* 공통 검색폼 */
+input[name="search"]{
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 5px 5px 5px 10px;
 }
 
 /* 공통 네비게이션 */
@@ -146,12 +164,73 @@ body{
     background-color: rgba(0,0,255,0.5);
   }
   /* 모바일 헤더 */
+  .header{
+    background: #38302E;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 모바일 로고 */
+  .logo{
+    padding: 10px 0;
+  }
+  .logo img{
+    display: block;
+  }
+
   /* 모바일 안내링크 */
+  .member{
+    display: flex;
+    justify-content: flex-end;
+    background: #988574;
+    margin: 0 -20px;
+    order: -1;
+    padding: 10px 20px;
+  }
   .member a{
     color: #fff;
     margin-left: 1em;
   }
 
+  /* 모바일 검색폼 */
+  .search-form{
+    padding-bottom: 10px;
+  }
+
+  .search-form fieldset{
+    font-size: 0;
+  }
+  /* .search-form legend, input[name="search"], .btn-search{
+    font-size: 1.6rem;
+  } */
+  .search-form *{
+    font-size: 1.6rem;
+  }
+
+  input[name="search"]{
+    width: calc(100% - 40px);
+  }
+  .btn-search{
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border: 0;
+    padding: 0;
+    margin-left: 10px;
+    background: transparent;
+  }
+  .btn-search::after{
+    content: "";
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url("images/btn_search.png");
+    background-size: 100% 100%;
+  }
 
 
   /* 모바일 네비게이션 */
@@ -206,19 +285,71 @@ body{
   }
 
   /* 데스크탑 헤더 */
-  .header {
+  /* .header {
+    display: grid;
+    grid-template-columns: repeat(12, 65px);
+    grid-template-rows: 50px 50px;
+    grid-column-gap: 20px;
+    align-items: center;
+  } */
+
+  .header{
+    position: relative;
   }
 
-  /* 데스트탑 안내링크 */
-  .member{
-    position: relative;
-    right: -1em;
+  /* 데스크탑 로고 */
+  .logo{
+    grid-column: 1 / span 3;
+    grid-row: 1/ span 2;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -30px; 
   }
+
+  /* 데스크탑 안내링크 */
+  .member{
+    grid-column: 9 / span 4;
+    position: relative;
+    right: -16px;
+    font-size: 0;
+    text-align: right;
+  }
+  .member li{
+    display: inline-block;
+    font-size: 1.6rem;
+  }
+
   .member li:nth-child(-n+2)::after{
     content: "|";
   }
   .member a{
-    padding: 0 1em;
+    display: inline-block;
+    padding: 10px 1em;
+  }
+
+  /* 데스크탑 검색 폼 */
+  .search-form{
+    grid-column: 7 / span 6;
+    grid-row: : 2;
+    justify-self: end;
+    padding: 10px 0;
+  }
+
+  .search-form fieldset{
+    float: right;
+  }
+
+  input[name="search"]{
+    width: 400px;
+  }
+
+  .btn-search{
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    background: #988574;
+    color: #fff;
+    padding: 5px 10px;
   }
 
   /* 데스트탑 내비게이션 */
